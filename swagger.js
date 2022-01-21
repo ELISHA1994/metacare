@@ -15,8 +15,12 @@ export default {
     },
     servers: [
         {
-            url: 'http://localhost:8080',
+            url: 'http://localhost:1337',
             description: 'Development server',
         },
+        {
+            url: 'https://metacare-starwars.herokuapp.com',
+            description: 'Production server',
+        }
     ],
 }

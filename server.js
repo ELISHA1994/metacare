@@ -61,6 +61,10 @@ app
             : process.stdout
     }))
 
+app.get('/', function (req, res) {
+    res.status(200).json({ "message": "server is up and running" });
+})
+
 // API DOCUMENTATION //
 app.use("/api-docs",
     swaggerUi.serve,
