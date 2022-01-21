@@ -1,11 +1,14 @@
 import http from "http";
 import path from "path";
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import {default as logger} from "morgan";
 import {default as rfs} from "rotating-file-stream";
 import { default as DBG } from 'debug';
+import swaggerDocument from "./swagger.js"
 import db from "./models/index.js";
 import router from "./routes.js";
 import {basicErrorHandler, handle404, normalizePort, onError, onListening} from "./utils/utils.js";
@@ -16,6 +19,17 @@ import { approotdir } from "./approotdir.js";
 const __dirname = approotdir;
 const debug = DBG('server:debug');
 const dbgerror = DBG('server:error');
+
+// Documentation setup Definitions
+const swaggerDefinition = {
+    ...swaggerDocument
+};
+const options = {
+    swaggerDefinition,
+    // Paths to files containing OpenAPI definitions
+    apis: ['./routes.js'],
+};
+const swaggerSpec = swaggerJSDoc(options);
 
 dotenv.config();
 db.sequelize.sync({}).then(() => {
@@ -46,6 +60,12 @@ app
             })
             : process.stdout
     }))
+
+// API DOCUMENTATION //
+app.use("/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
+)
 
 // API ROUTES //
 app.use("/api/v1", router);

@@ -25,6 +25,7 @@ export const moviesList = async () => {
 
 export const movieCharactersList = async (query_params) => {
     let { title, gender } = query_params;
+    // title.replace(/[^a-zA-Z ]/g, " ");
 
     // Validate query params "title"
     if (title === undefined) {
