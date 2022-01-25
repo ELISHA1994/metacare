@@ -7,7 +7,7 @@ export const post_comment = async (req, res) => {
     let response = { ...constants.defaultServerResponse };
 
     req.body.IP_ADDRESS = requestIp.getClientIp(req);
-    console.log("ip address", req.body.IP_ADDRESS);
+    // console.log("ip address", req.body.IP_ADDRESS);
     const responseFromService = await createComment(req.body);
     response.status = 200;
     response.message = constants.commentMessage.COMMENT_CREATED;

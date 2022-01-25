@@ -1,3 +1,13 @@
+FROM node:16
+
+RUN apt-get update -y && apt-get upgrade -y && apt-get -y install curl python build-essential git ca-certificates
+
+ENV DEBUG="server:*"
+ENV PORT="1337"
+ENV BASE_URL="https://swapi.py4e.com/api/films/"
+
+RUN mkdir -p /metacare /metacare/config
+
 FROM node:14
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get -y install curl python build-essential git ca-certificates

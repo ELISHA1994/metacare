@@ -1,4 +1,6 @@
-import { Model } from "sequelize";
+// import { Model } from "sequelize";
+import Sequelize from "sequelize";
+const { Model } = Sequelize;
 
 export default (sequelize, Datatype) => {
     class Comment extends Model {}

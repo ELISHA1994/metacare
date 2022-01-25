@@ -6,7 +6,7 @@ const dbgerror = DBG('server:error');
 
 
 export const fetchAllMovies = async () => {
-    console.log("calling fetch")
+    // console.log("calling fetch")
     const response = await axios.get(process.env.BASE_URL);
     return response.data.results;
 }
